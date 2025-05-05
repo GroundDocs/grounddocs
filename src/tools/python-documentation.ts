@@ -18,7 +18,7 @@ interface PythonDocResponse {
   }>;
 }
 
-export class PythonDocumentationTool extends BaseTool {
+export class GetPythonDocumentationTool extends BaseTool {
   name = PYTHON_DOCS_TOOL_NAME;
   description = PYTHON_DOCS_TOOL_DESCRIPTION;
 

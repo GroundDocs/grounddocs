@@ -20,7 +20,7 @@ interface K8sDocResponse {
   }>;
 }
 
-export class K8sDocumentationTool extends BaseTool {
+export class GetKubernetesDocumentationTool extends BaseTool {
   name = K8S_DOCS_TOOL_NAME;
   description = K8S_DOCS_TOOL_DESCRIPTION;
 

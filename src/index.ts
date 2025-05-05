@@ -10,7 +10,7 @@ import { GetKubernetesDocumentationTool } from "./tools/kubernetes-documentation
 
 setupJsonConsole();
 
-const VERSION = "0.0.1";
+const VERSION = "0.1.0";
 const server = new McpServer({
   name: "grounddocs",
   version: VERSION,

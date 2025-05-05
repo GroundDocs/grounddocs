@@ -64,3 +64,23 @@ logs/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Node.js dependencies
+node_modules/
+
+# Build output
+/dist/
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment variables
+.env
+
+# Misc
+*.tmp
+
+# Ignore compiled JS artifacts
+*.js
+*.js.map
+*.d.ts
