@@ -12,14 +12,6 @@ Kubernetes documentation—into a single, searchable knowledge base. It ensures 
 richest and most current reference material in one call.
 `;
 
-interface K8sDocResponse {
-  results: Array<{
-    path: string;
-    content: string;
-    url?: string;
-  }>;
-}
-
 export class GetKubernetesDocumentationTool extends BaseTool {
   name = K8S_DOCS_TOOL_NAME;
   description = K8S_DOCS_TOOL_DESCRIPTION;
@@ -35,7 +27,7 @@ export class GetKubernetesDocumentationTool extends BaseTool {
       // Get system information
       const systemInfo = await this.getSystemInformation();
 
-      const { data } = await groundDocsClient.post<K8sDocResponse>(
+      const { data }: { data: { results: string[] } } = await groundDocsClient.post(
         "/api/kubernetes/documentation",
         {
           query,
@@ -45,24 +37,16 @@ export class GetKubernetesDocumentationTool extends BaseTool {
         }
       );
 
-      // Format results as markdown
-      let formattedResults = "";
-      if (data.results && data.results.length > 0) {
-        formattedResults = data.results.map((doc: { path: string; content: string; url?: string }) => {
-          return `## ${doc.path}\n\n${doc.content}\n\n${doc.url ? `Source: ${doc.url}` : ''}`;
-        }).join('\n\n---\n\n');
-      } else {
-        formattedResults = "No relevant documentation found for your query.";
-      }
-
       return {
-        content: [
-          {
+        content: data.results.map((doc: any) => {
+          const parsed = typeof doc === "string" ? JSON.parse(doc) : doc;
+          return {
             type: "text" as const,
-            text: formattedResults,
-          },
-        ],
-      };
+            text: parsed.text,
+          };
+        }),
+      };      
+
     } catch (error) {
       console.error("Error fetching Kubernetes documentation:", error);
       throw error;

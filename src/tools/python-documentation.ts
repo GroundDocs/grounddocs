@@ -10,14 +10,6 @@ This tool consolidates information from multiple sources into a single, searchab
 It ensures access to the richest and most current reference material in one call.
 `;
 
-interface PythonDocResponse {
-  results: Array<{
-    path: string;
-    content: string;
-    url?: string;
-  }>;
-}
-
 export class GetPythonDocumentationTool extends BaseTool {
   name = PYTHON_DOCS_TOOL_NAME;
   description = PYTHON_DOCS_TOOL_DESCRIPTION;
@@ -31,7 +23,7 @@ export class GetPythonDocumentationTool extends BaseTool {
 
   async execute({ query, library, version, top_k = 10 }: z.infer<typeof this.schema>) {
     try {
-      const { data } = await groundDocsClient.post<PythonDocResponse>(
+      const { data }: { data: { results: string[] } } = await groundDocsClient.post(
         "/api/python/documentation",
         {
           query,
@@ -41,24 +33,16 @@ export class GetPythonDocumentationTool extends BaseTool {
         }
       );
 
-      // Format results as markdown
-      let formattedResults = "";
-      if (data.results && data.results.length > 0) {
-        formattedResults = data.results.map((doc: { path: string; content: string; url?: string }) => {
-          return `## ${doc.path || library + ' Documentation'}\n\n${doc.content}\n\n${doc.url ? `Source: ${doc.url}` : ''}`;
-        }).join('\n\n---\n\n');
-      } else {
-        formattedResults = `No relevant documentation found for ${library}${version ? ` v${version}` : ''}.`;
-      }
-
       return {
-        content: [
-          {
+        content: data.results.map((doc: any) => {
+          const parsed = typeof doc === "string" ? JSON.parse(doc) : doc;
+          return {
             type: "text" as const,
-            text: formattedResults,
-          },
-        ],
+            text: parsed.text,
+          };
+        }),
       };
+
     } catch (error) {
       console.error(`Error fetching Python documentation for ${library}:`, error);
       throw error;
