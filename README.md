@@ -1,6 +1,14 @@
 # GroundDocs
+Just do this
 
-GroundDocs is a version-aware documentation server for LLMs. It connects LLMs to trusted, real-time documentation sources to reduce hallucinations and ensure accurate, grounded responses during inference.
+```
+npx @grounddocs/cli@latest install <client>
+
+Supported clients: cursor, windsurf, cline, claude, witsy, enconvo
+```
+And now our MCP server is installed!
+
+GroundDocs is a version-aware documentation MCP server for LLMs. It connects LLMs to trusted, real-time documentation sources to reduce hallucinations and ensure accurate, grounded responses during inference.
 
 🔍 What It Does
 - Queries official, version-specific documentation for Kubernetes and Python libraries
