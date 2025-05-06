@@ -5,11 +5,29 @@ import * as os from 'os';
 
 const K8S_DOCS_TOOL_NAME = "k8s_get_documentation";
 const K8S_DOCS_TOOL_DESCRIPTION = `
-Use this for every kubernetes related query. Primary Kubernetes documentation lookup tool.
+   Primary Kubernetes documentation lookup tool. Use this for every kubernetes documentation-related query.
 
-This tool consolidates information from multiple sources—including GitHub, DeepWiki, and curated
-Kubernetes documentation—into a single, searchable knowledge base. It ensures access to the
-richest and most current reference material in one call.
+    This tool consolidates information from multiple sources—including GitHub, DeepWiki, and curated
+    Kubernetes documentation—into a single, searchable knowledge base. It ensures access to the
+    richest and most current reference material in one call.
+
+    Args:
+        query: A natural language question (e.g., "How do I define a Deployment?").
+        version: Optional Kubernetes version (e.g., "v1.28"). Defaults to detected cluster version if not specified.
+        top_k: Optional number of top matching documents to return. Defaults to 10.
+
+    Returns:
+        A list of dictionaries, each containing document path and corresponding content.
+
+    Example Usage:
+        # Search Kubernetes docs for StatefulSets
+        k8s_get_documentation(query="what is a StatefulSet", version="v1.28")
+
+    Notes:
+        - This tool automatically loads or builds a RAG (Retrieval-Augmented Generation) index for the
+          specified Kubernetes version.
+        - If an index is not found locally, the tool will fetch and index the documentation before responding.
+        - You should call this function for any question that needs project documentation context.
 `;
 
 export class GetKubernetesDocumentationTool extends BaseTool {
