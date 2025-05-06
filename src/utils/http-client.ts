@@ -1,5 +1,12 @@
 import { config } from "./config.js";
 
+// Polyfill fetch for Node.js environments
+// @ts-ignore
+if (typeof fetch === "undefined") {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  globalThis.fetch = require('node-fetch');
+}
+
 const GROUND_DOCS_API_KEY =
   config.apiKey || process.env.GROUND_DOCS_API_KEY || process.env.API_KEY;
 
