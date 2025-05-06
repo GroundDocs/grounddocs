@@ -23,6 +23,8 @@ export class GetPythonDocumentationTool extends BaseTool {
 
   async execute({ query, library, version, top_k = 10 }: z.infer<typeof this.schema>) {
     try {
+      console.log(`Fetching Python docs for library: "${library}", query: "${query}" with top_k=${top_k}`);
+
       const { data }: { data: { results: string[] } } = await groundDocsClient.post(
         "/api/python/documentation",
         {
@@ -33,13 +35,23 @@ export class GetPythonDocumentationTool extends BaseTool {
         }
       );
 
+      if (!data || !data.results || !Array.isArray(data.results)) {
+        console.error("Invalid response format:", data);
+        throw new Error("Invalid response format");
+      }
+
       return {
         content: data.results.map((doc: any) => {
-          const parsed = typeof doc === "string" ? JSON.parse(doc) : doc;
-          return {
-            type: "text" as const,
-            text: parsed.text,
-          };
+          try {
+            const parsed = typeof doc === "string" ? JSON.parse(doc) : doc;
+            return {
+              type: "text" as const,
+              text: parsed.text,
+            };
+          } catch (parseError) {
+            console.error("Error parsing document:", parseError);
+            throw parseError;
+          }
         }),
       };
 

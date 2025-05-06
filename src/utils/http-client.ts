@@ -59,15 +59,39 @@ const createMethod = (method: HttpMethod) => {
 
     console.log("BASE_URL", BASE_URL);
 
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
-      ...options,
-      method,
-      headers,
-      ...(data ? { body: JSON.stringify(data) } : {}),
-    });
+    try {
+      const response = await fetch(`${BASE_URL}${endpoint}`, {
+        ...options,
+        method,
+        headers,
+        ...(data ? { body: JSON.stringify(data) } : {}),
+      });
 
-    console.log("response", response);
-    return { status: response.status, data: (await response.json()) as T };
+      console.log("response", response);
+      
+      // Check if response is ok (status 200-299)
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`HTTP Error ${response.status}: ${errorText}`);
+        throw new Error(`HTTP Error ${response.status}: ${errorText}`);
+      }
+      
+      // Check content type to determine if it's JSON
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        return { status: response.status, data: (await response.json()) as T };
+      } else {
+        const textData = await response.text();
+        console.log("Non-JSON response:", textData);
+        return { 
+          status: response.status, 
+          data: { text: textData } as unknown as T 
+        };
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      throw error;
+    }
   };
 };
 
