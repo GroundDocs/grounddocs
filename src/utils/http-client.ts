@@ -75,19 +75,7 @@ const createMethod = (method: HttpMethod) => {
         console.error(`HTTP Error ${response.status}: ${errorText}`);
         throw new Error(`HTTP Error ${response.status}: ${errorText}`);
       }
-      
-      // Check content type to determine if it's JSON
-      const contentType = response.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
-        return { status: response.status, data: (await response.json()) as T };
-      } else {
-        const textData = await response.text();
-        console.log("Non-JSON response:", textData);
-        return { 
-          status: response.status, 
-          data: { text: textData } as unknown as T 
-        };
-      }
+      return { status: response.status, data: (await response.json()) as T };
     } catch (error) {
       console.error("Fetch error:", error);
       throw error;
