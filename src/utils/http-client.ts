@@ -3,11 +3,12 @@ import { config } from "./config.js";
 const GROUND_DOCS_API_KEY =
   config.apiKey || process.env.GROUND_DOCS_API_KEY || process.env.API_KEY;
 
-const isTesting = process.env.DEBUG === "true" ? true : false;
-export const BASE_URL = isTesting
-  ? "http://localhost:8000"
-  : "https://grounddocs.onrender.com";
+// const isTesting = process.env.DEBUG === "true" ? true : false;
+// export const BASE_URL = isTesting
+//   ? "http://localhost:8000"
+//   : "https://grounddocs.onrender.com";
 
+export const BASE_URL = "https://grounddocs.onrender.com";
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 interface HttpClient {
