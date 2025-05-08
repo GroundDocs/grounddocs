@@ -1,8 +1,6 @@
 # GroundDocs Cli
 
-> Version-aware documentation server that grounds LLM responses in trusted documentation sources
-
-GroundDocs connects LLMs to trusted, real-time documentation sources to reduce hallucinations and ensure accurate, version-specific responses during inference.
+GroundDocs is a version-aware documentation server that connects LLMs to trusted, real-time documentation sources—reducing hallucinations and ensuring accurate, version-specific responses during inference.
 
 ## 🚀 Installation
 
