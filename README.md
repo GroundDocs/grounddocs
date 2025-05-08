@@ -1,4 +1,4 @@
-# GroundDocs
+# GroundDocs Cli
 
 > Version-aware documentation server that grounds LLM responses in trusted documentation sources
 
@@ -11,6 +11,24 @@ npx @grounddocs/cli@latest install <client>
 ```
 
 **Supported clients:** cursor, windsurf, cline, claude, witsy, enconvo
+
+
+## 🔧 Manual Installation
+
+If you prefer manual setup, add GroundDocs to your IDE's MCP (Model Context Protocol) configuration:
+
+```json
+{
+  "mcpServers": {
+    "@grounddocs/grounddocs": {
+      "command": "npx",
+      "args": ["-y", "@grounddocs/grounddocs@latest", "API_KEY=\"your-api-key\""]
+    }
+  }
+}
+```
+After configuration, restart your IDE for changes to take effect.
+
 
 ## 📚 Supported Libraries
 
