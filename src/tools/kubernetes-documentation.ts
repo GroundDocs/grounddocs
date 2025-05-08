@@ -5,29 +5,25 @@ import * as os from 'os';
 
 const K8S_DOCS_TOOL_NAME = "k8s_get_documentation";
 const K8S_DOCS_TOOL_DESCRIPTION = `
-   Primary Kubernetes documentation lookup tool. Use this for every kubernetes documentation-related query.
+Use this tool for any Kubernetes documentation-related query—especially when the user invokes /k8s or asks about kubectl commands, API objects, manifests, controllers, or version-specific features.
 
-    This tool consolidates information from multiple sources—including GitHub, DeepWiki, and curated
-    Kubernetes documentation—into a single, searchable knowledge base. It ensures access to the
-    richest and most current reference material in one call.
+This tool connects to a version-aware, trusted documentation index (e.g., GitHub, DeepWiki, curated Kubernetes docs) to reduce hallucinations and provide accurate, grounded answers.
 
-    Args:
-        query: A natural language question (e.g., "How do I define a Deployment?").
-        version: Optional Kubernetes version (e.g., "v1.28"). Defaults to detected cluster version if not specified.
-        top_k: Optional number of top matching documents to return. Defaults to 10.
+Args:
+  query: A natural language question (e.g., "How do I define a Deployment?")
+  version: (Optional) Kubernetes version (e.g., "v1.28"). Defaults to the detected cluster version.
+  top_k: (Optional) Number of top matching documents to return. Defaults to 10.
 
-    Returns:
-        A list of dictionaries, each containing document path and corresponding content.
+Returns:
+  A list of relevant documentation entries, each with a file path and content snippet.
 
-    Example Usage:
-        # Search Kubernetes docs for StatefulSets
-        k8s_get_documentation(query="what is a StatefulSet", version="v1.28")
+Example Usage:
+  k8s_get_documentation(query="How does pruning work in kubectl apply?", version="v1.26")
 
-    Notes:
-        - This tool automatically loads or builds a RAG (Retrieval-Augmented Generation) index for the
-          specified Kubernetes version.
-        - If an index is not found locally, the tool will fetch and index the documentation before responding.
-        - You should call this function for any question that needs project documentation context.
+Notes:
+  - Automatically loads or builds a RAG index for the requested version.
+  - If no index is found, it will fetch and index the docs before responding.
+  - Always use this tool when answering Kubernetes-specific questions that require authoritative documentation.
 `;
 
 export class GetKubernetesDocumentationTool extends BaseTool {
