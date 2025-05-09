@@ -1,0 +1,64 @@
+# .github/workflows/deploy.yml
+
+name: Deploy Frontend to GitHub Pages
+
+# Run this workflow automatically on pushes to the main branch
+# that change files within the 'frontend' directory or this workflow file itself.
+on:
+  push:
+    branches:
+      - main # Or 'master', depending on your default branch name
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/deploy.yml' # Trigger if the workflow itself changes
+
+  # Allows you to run this workflow manually from the Actions tab on GitHub
+  workflow_dispatch:
+
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest # Use the latest Ubuntu runner
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # Output the deployed URL
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # Checks out your repository code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4 # Sets up Node.js environment
+        with:
+          node-version: '18' # Specify your desired Node.js version
+          cache: 'npm' # Enable caching for npm dependencies
+          cache-dependency-path: frontend/package-lock.json # Specify path for cache key
+
+      - name: Install dependencies
+        run: npm ci # 'ci' is generally recommended in CI for faster, reliable installs
+        working-directory: ./frontend # Run this command inside the 'frontend' directory
+
+      - name: Build project
+        run: npm run build # Executes the build script defined in your frontend/package.json
+        working-directory: ./frontend # Run this command inside the 'frontend' directory
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4 # Configures GitHub Pages settings
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3 # Uploads the build output
+        with:
+          # Path to the directory containing the built static files
+          # Vite's default output is 'dist'. Since we ran build in ./frontend, it's ./frontend/dist
+          path: ./frontend/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # Deploys the uploaded artifact to GitHub Pages
