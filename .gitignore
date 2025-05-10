@@ -80,7 +80,3 @@ node_modules/
 # Misc
 *.tmp
 
-# Ignore compiled JS artifacts
-*.js
-*.js.map
-*.d.ts
