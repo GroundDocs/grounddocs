@@ -15,7 +15,7 @@ const Index = () => {
         </div>
         <FeatureList />
       </main>
-      <footer className="py-6 text-center text-sm text-muted-foreground">
+      <footer className="mt-4 py-6 text-center text-sm text-muted-foreground">
         <p>© 2025 GroundDocs. All rights reserved.</p>
       </footer>
     </div>
