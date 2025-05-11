@@ -5,7 +5,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 
 import { setupJsonConsole } from "./utils/console.js";
 
-// import { GetPythonDocumentationTool } from "./tools/python-documentation.js";
+import { GetPythonDocumentationTool } from "./tools/python-documentation.js";
 import { GetKubernetesDocumentationTool } from "./tools/kubernetes-documentation.js";
 
 setupJsonConsole();
@@ -17,7 +17,7 @@ const server = new McpServer({
 });
 
 // Register tools
-// new GetPythonDocumentationTool().register(server);
+new GetPythonDocumentationTool().register(server);
 new GetKubernetesDocumentationTool().register(server);
 
 async function runServer() {
