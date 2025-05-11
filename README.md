@@ -1,4 +1,4 @@
-# GroundDocs
+# GroundDocs Cli
 
 GroundDocs is a version-aware Kubernetes documentation assistant. It connects LLMs to trusted, real-time Kubernetes docs—reducing hallucinations and ensuring accurate, version-specific responses.
 
@@ -8,7 +8,7 @@ GroundDocs is a version-aware Kubernetes documentation assistant. It connects LL
 npx @grounddocs/cli@latest install <client>
 ```
 
-**Supported clients:** cursor, windsurf, cline, claude, witsy, enconvo
+**Supported clients:** cursor, windsurf, cline, claude, witsy, enconvo, vscode
 
 
 ## 🔧 Manual Setup
@@ -28,7 +28,7 @@ To manually configure GroundDocs, add it to your IDE’s MCP (Model Context Prot
 After configuration, restart your IDE for the changes to take effect.
 
 
-## 📚 Supported Domain
+📚 Supported Domain
 
 - **Kubernetes** (all versions, including version-aware kubectl behavior, API schemas, and feature gates)
 
