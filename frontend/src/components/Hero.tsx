@@ -61,7 +61,7 @@ const Hero = () => {
         {/* <span className="text-sm font-medium">Backed by ___</span> */}
       {/* </div> */}
       
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8">
         🔒 LLMs Grounded in Version-Perfect Kubernetes Documentation
       </h1>
       
@@ -76,7 +76,7 @@ const Hero = () => {
       <Button 
         type="submit"
         size="lg"
-        className="font-medium text-base px-8 mb-6 bg-green-500 hover:bg-green-600 text-white"
+        className="font-medium text-base px-8 mb-12 mt-1 bg-green-500 hover:bg-green-600 text-white"
       >
         <a href="https://www.npmjs.com/package/@grounddocs/grounddocs" target="_blank" rel="noopener noreferrer">
           Try the Alpha
@@ -106,7 +106,7 @@ const Hero = () => {
         </Button>
       </form>
 
-      <p className="mt-4 text-sm text-muted-foreground">
+      <p className="mt-6 text-sm text-muted-foreground">
       Master Kubernetes with AI you can finally trust.
       </p>
     </div>
