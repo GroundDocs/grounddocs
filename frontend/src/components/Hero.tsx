@@ -62,21 +62,31 @@ const Hero = () => {
       {/* </div> */}
       
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-        🔒 Ground Your LLMs in Real, Trusted Knowledge
+        🔒 LLMs Grounded in Version-Perfect Kubernetes Documentation
       </h1>
       
       <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
-      Connect your AI to verified, version-correct documentation — across open-source projects, languages, and your code.
-      No hallucinations. No broken links. One simple API call.
+      AI lies. Your LLM needs the <em>exact</em> Kubernetes docs version to tell the truth. 
+      No more hallucinations. No more version hell.
       </p>
       {/* <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
       
       </p> */}
       
+      <Button 
+        type="submit"
+        size="lg"
+        className="font-medium text-base px-8 mb-6 bg-green-500 hover:bg-green-600 text-white"
+      >
+        <a href="https://www.npmjs.com/package/@grounddocs/grounddocs" target="_blank" rel="noopener noreferrer">
+          Try the Alpha
+        </a>
+      </Button>
+      
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row w-full max-w-md gap-2 mb-4">
         <div className="flex-1 relative">
           <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input 
+          <Input
             type="email"
             placeholder="Enter your email"
             className="pl-10 text-black"
@@ -87,7 +97,7 @@ const Hero = () => {
         </div>
         <Button 
           type="submit" 
-          size="lg" 
+          size="lg"
           className="font-medium text-base px-8"
           disabled={isSubmitting}
         >
@@ -97,7 +107,7 @@ const Hero = () => {
       </form>
 
       <p className="mt-4 text-sm text-muted-foreground">
-      GitHub, Python, Kubernetes, Golang — grounded answers, zero setup.
+      Master Kubernetes with AI you can finally trust.
       </p>
     </div>
   );

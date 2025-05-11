@@ -1,4 +1,3 @@
-
 const SourceVerifiedImage = () => {
   return (
     <div className="relative w-full max-w-5xl mx-auto bg-gradient-to-b from-primary/10 via-primary/5 to-transparent rounded-t-2xl overflow-hidden">
@@ -11,9 +10,11 @@ const SourceVerifiedImage = () => {
             <span className="ml-4 text-xs text-slate-500">LLM Query</span>
           </div>
           <div className="text-green-400 font-mono text-sm">
-            <div className="mb-2">{">"} How do I authenticate with the GitHub API v4?</div>
-            <div className="mb-2">{">"} What's the syntax for K8s Deployments in v1.29?</div>
-            <div>{">"} Show me some of the latest Python 3.14 features</div>
+            <div className="mb-2">{">"} What broke in K8s v1.31? <br /><i>See deprecated & removed APIs in seconds.</i></div>
+            <br />
+            <div className="mb-2">{">"} Pods stuck in <code>Pending</code> after upgrading to v1.30? <br /><i>Find out why — fast.</i></div>
+            <br />
+            <div>{">"} K8s v1.28+: Did <code>initContainers</code> or Job retries change? What about sidecars? <br /><i>Get answers in seconds.</i></div>
           </div>
         </div>
         
@@ -45,16 +46,37 @@ const SourceVerifiedImage = () => {
                 <svg className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                secure-version(CVE-Free)
+                reference-provided
               </div>
             </div>
           </div>
-          
-          <div className="text-sm font-mono text-slate-200">
-            <p className="mb-2">To authenticate, use your API key in the header:</p>
-            <pre className="bg-slate-800 p-2 rounded text-xs overflow-auto">
-              {"Authorization: Bearer YOUR_API_KEY"}
-            </pre>
+
+        <div className="text-xs font-mono text-slate-200 bg-slate-800 p-4 rounded-md space-y-4">
+            <div>
+              <p className="text-slate-400 font-semibold mb-1"># Metadata</p>
+              <p><span className="text-slate-400">source_type:</span> changelog</p>
+              <p><span className="text-slate-400">version:</span> v1.28</p>
+              <p><span className="text-slate-400">url:</span> <a href="https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.28.md" className="underline text-blue-400" target="_blank">View on GitHub</a></p>
+            </div>
+
+            <div>
+              <p className="text-slate-400 font-semibold mb-1"># Changelog</p>
+              <p>• Fix OpenAPI v3 not being cleaned up after deleting APIServices<br />
+                <span className="text-slate-400">(#120108, @tnqn) [SIG API Machinery and Testing]</span>
+              </p>
+
+              <p>• Fix a 1.28 scheduler regression: pods with concurrent events could be incorrectly moved to the unschedulable queue, getting stuck until the next purge after 5 minutes if no new events occurred.<br />
+                <span className="text-slate-400">(#120445, @pohly) [SIG Scheduling]</span>
+              </p>
+
+              <p>• Fix concurrent map access in TopologyCache’s <code>HasPopulatedHints</code> method.<br />
+                <span className="text-slate-400">(#120372, @Miciah) [SIG Network]</span>
+              </p>
+
+              <p>• Fix 1.26 regression: ensure preemption is skipped when PreFilter returns <code>UnschedulableAndUnresolvable</code>.<br />
+                <span className="text-slate-400">(#119951, @sanposhiho) [SIG Scheduling]</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
