@@ -2,6 +2,10 @@
 
 GroundDocs is a version-aware Kubernetes documentation assistant. It connects LLMs to trusted, real-time Kubernetes docs—reducing hallucinations and ensuring accurate, version-specific responses.
 
+<a href="https://glama.ai/mcp/servers/@GroundDocs/grounddocs">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@GroundDocs/grounddocs/badge" alt="GroundDocs MCP server" />
+</a>
+
 ## 🚀 Installation
 
 ```bash
