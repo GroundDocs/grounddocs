@@ -106,7 +106,7 @@ const Hero = () => {
       </form>
 
       <p className="mt-6 text-sm text-muted-foreground">
-      Currently supports: Kubernetes and Python - grounded answers, zero setup.
+      Kubernetes and Python - grounded answers, zero setup.
       </p>
     </div>
   );

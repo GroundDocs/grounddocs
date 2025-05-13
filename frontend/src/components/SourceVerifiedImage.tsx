@@ -1,3 +1,4 @@
+
 const SourceVerifiedImage = () => {
   return (
     <div className="relative w-full max-w-5xl mx-auto bg-gradient-to-b from-primary/10 via-primary/5 to-transparent rounded-t-2xl overflow-hidden">
@@ -10,11 +11,11 @@ const SourceVerifiedImage = () => {
             <span className="ml-4 text-xs text-slate-500">LLM Query</span>
           </div>
           <div className="text-green-400 font-mono text-sm">
-            <div className="mb-2">{">"} What broke in K8s v1.31? <br /><i>See deprecated & removed APIs in seconds.</i></div>
-            <br />
-            <div className="mb-2">{">"} Pods stuck in <code>Pending</code> after upgrading to v1.30? <br /><i>Find out why — fast.</i></div>
-            <br />
-            <div>{">"} K8s v1.28+: Did <code>initContainers</code> or Job retries change? What about sidecars? <br /><i>Get answers in seconds.</i></div>
+            <div className="mb-2">{">"} Which version of PyTorch supports CUDA 12.1??</div> <br />
+            <div className="mb-2">{">"} What's the syntax for K8s Deployments in v1.29?</div> <br />
+            <div className="mb-2">{">"} Show me some of the latest Pandas features</div> <br />
+            
+
           </div>
         </div>
         
@@ -46,12 +47,12 @@ const SourceVerifiedImage = () => {
                 <svg className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                reference-provided
+                environment-aware
               </div>
             </div>
           </div>
-
-        <div className="text-xs font-mono text-slate-200 bg-slate-800 p-4 rounded-md space-y-4">
+          
+          <div className="text-xs font-mono text-slate-200 bg-slate-800 p-4 rounded-md space-y-4">
             <div>
               <p className="text-slate-400 font-semibold mb-1"># Metadata</p>
               <p><span className="text-slate-400">source_type:</span> changelog</p>
@@ -77,7 +78,7 @@ const SourceVerifiedImage = () => {
                 <span className="text-slate-400">(#119951, @sanposhiho) [SIG Scheduling]</span>
               </p>
             </div>
-          </div>
+            </div>
         </div>
       </div>
       <div className="absolute inset-0 pointer-events-none border border-white/5 rounded-2xl"></div>
