@@ -62,12 +62,11 @@ const Hero = () => {
       {/* </div> */}
       
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8">
-        🔒 LLMs Grounded in Version-Perfect Kubernetes Documentation
+        🔒 Ground Your LLMs in Real, Trusted Knowledge
       </h1>
       
       <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
-      AI lies. Your LLM needs the <em>exact</em> Kubernetes docs version to tell the truth. 
-      No more hallucinations. No more version hell.
+      Connect your AI to verified, version-correct documentation — across open-source projects, languages, and your code.
       </p>
       {/* <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
       
@@ -107,7 +106,7 @@ const Hero = () => {
       </form>
 
       <p className="mt-6 text-sm text-muted-foreground">
-      Master Kubernetes with AI you can finally trust.
+      Currently supports: Kubernetes and Python - grounded answers, zero setup.
       </p>
     </div>
   );
