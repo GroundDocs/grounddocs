@@ -2,9 +2,6 @@
 
 GroundDocs is a version-aware documentation assistant. It connects LLMs to trusted, real-time docs—reducing hallucinations and ensuring accurate, version-specific responses.
 
-<a href="https://glama.ai/mcp/servers/@GroundDocs/grounddocs">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@GroundDocs/grounddocs/badge" alt="GroundDocs MCP server" />
-</a>
 
 ## 🚀 Installation
 
