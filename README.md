@@ -1,6 +1,6 @@
-# GroundDocs Cli
+# GroundDocs
 
-GroundDocs is a version-aware Kubernetes documentation assistant. It connects LLMs to trusted, real-time Kubernetes docs—reducing hallucinations and ensuring accurate, version-specific responses.
+GroundDocs is a version-aware documentation assistant. It connects LLMs to trusted, real-time Kubernetes docs—reducing hallucinations and ensuring accurate, version-specific responses.
 
 ## 🚀 Installation
 
