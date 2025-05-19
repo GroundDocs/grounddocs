@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import APIKeys from "./pages/APIKeys";
+import Billing from "./pages/Billing"
 
 const queryClient = new QueryClient();
 
@@ -18,8 +19,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* <Route path="/home" element={<Home />} /> */}
-          {/* <Route path="/api-keys" element={<APIKeys />} /> */}
+          {/* <Route path="/home" element={<Home />} />
+          <Route path="/api-keys" element={<APIKeys />} />
+          <Route path="/billing" element={<Billing />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
