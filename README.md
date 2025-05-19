@@ -1,10 +1,20 @@
 # GroundDocs
+[![smithery badge](https://smithery.ai/badge/@GroundDocs/grounddocs)](https://smithery.ai/server/@GroundDocs/grounddocs)
 
 GroundDocs is a version-aware documentation assistant. It connects LLMs to trusted, real-time docs—reducing hallucinations and ensuring accurate, version-specific responses.
 
 
 ## 🚀 Installation
 
+### Installing via Smithery
+
+To install GroundDocs Kubernetes Documentation Assistant for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@GroundDocs/grounddocs):
+
+```bash
+npx -y @smithery/cli install @GroundDocs/grounddocs --client claude
+```
+
+### Installing Manually
 ```bash
 npx @grounddocs/cli@latest install <client>
 ```
