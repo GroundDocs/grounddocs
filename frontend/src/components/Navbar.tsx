@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="flex items-center">
         <span className="text-xl font-bold">GroundDocs</span>
       </div>
-      <div className="flex space-x-4 items-center">
+      {/* <div className="flex space-x-4 items-center">
         <SignedOut>
           <Link to="/sign-in">
             <Button variant="outline" className="font-medium text-base px-8 bg-green-500 hover:bg-green-600 text-white">
@@ -37,7 +37,7 @@ const Navbar = () => {
             }}
           />
         </SignedIn>
-      </div>
+      </div> */}
     </nav>
   );
 };
