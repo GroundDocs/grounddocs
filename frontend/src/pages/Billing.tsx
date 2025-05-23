@@ -17,9 +17,9 @@ const Billing = () => {
 
   // Features list for each plan
   const proFeatures = [
-    "up to 100 User Accounts",
+    // "up to 100 User Accounts",
     "10k MCP server Calls/Month",
-    "Unlimited access to MCP Clients",
+    // "Unlimited access to MCP Clients",
     "Dedicated Support",
   ];
 
@@ -57,7 +57,7 @@ const Billing = () => {
         basePrice: billingInterval === "monthly" 
           ? prices.pro.monthly 
           : prices.pro.yearlyTotal,
-        interval: billingInterval === "monthly" ? "per month" : "per year"
+        interval: "per month"
       };
     // }
     // return {
@@ -151,7 +151,7 @@ const Billing = () => {
                   ${billingInterval === "monthly" ? prices.pro.monthly.toFixed(2) : prices.pro.yearly.toFixed(2)}
                 </div>
                 <div className="text-sm text-gray-600">
-                  {billingInterval === "monthly" ? "per month" : "per year"}
+                  per month
                 </div>
               </div>
             </div>

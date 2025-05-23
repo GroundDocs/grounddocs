@@ -23,16 +23,16 @@ const Home = () => {
       icon: Key,
       path: "/api-keys",
     },
-    {
-      title: "Try the MCP Servers in Playground",
-      icon: Play,
-      path: "/playground",
-    },
-    {
-      title: "Go to Billing",
-      icon: Users,
-      path: "/billing",
-    },
+    // {
+    //   title: "Try the MCP Servers in Playground",
+    //   icon: Play,
+    //   path: "/playground",
+    // },
+    // {
+    //   title: "Go to Billing",
+    //   icon: Users,
+    //   path: "/billing",
+    // },
   ];
 
   return (
@@ -52,9 +52,9 @@ const Home = () => {
                     <card.icon className="w-5 h-5 mr-3" />
                     <span>{card.title}</span>
                   </div>
-                  {card.external && (
+                  {/* {card.external && (
                     <ExternalLink className="w-4 h-4 text-gray-500" />
-                  )}
+                  )} */}
                 </Button>
               </Link>
             </Card>

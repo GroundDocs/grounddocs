@@ -11,19 +11,19 @@ const Sidebar = () => {
     {
       header: "Application",
       items: [
-        { name: "Home", path: "/", icon: Home },
+        { name: "Home", path: "/home", icon: Home },
         // { name: "MCP Clients", path: "/mcp-clients", icon: Users },
         // { name: "Documentation", path: "/documentation", icon: BookOpen },
         // { name: "Playground", path: "/playground", icon: Play },
         { name: "API Keys", path: "/api-keys", icon: Key },
       ],
     },
-    {
-      header: "Settings",
-      items: [
-        { name: "Billing", path: "/billing", icon: CreditCard },
-      ],
-    },
+    // {
+    //   header: "Settings",
+    //   items: [
+    //     { name: "Billing", path: "/billing", icon: CreditCard },
+    //   ],
+    // },
   ];
 
   return (
@@ -65,7 +65,7 @@ const Sidebar = () => {
         </div>
         <div className="flex-1 truncate">
           <p className="text-sm font-medium">Ishaan Sehgal</p>
-          <p className="text-xs text-gray-500 truncate">ishaan.seh...</p>
+          <p className="text-xs text-gray-500 truncate">ishaan.sehgal99@gmail.com</p>
         </div>
       </div>
     </div>
