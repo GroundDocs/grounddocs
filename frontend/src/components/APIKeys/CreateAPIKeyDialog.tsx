@@ -4,19 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormField, FormItem, FormControl } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
+import { Loader2 } from "lucide-react";
 
 interface CreateAPIKeyDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSubmit: (name: string) => void;
+  loading?: boolean;
 }
 
-const CreateAPIKeyDialog = ({ open, onOpenChange, onSubmit }: CreateAPIKeyDialogProps) => {
+const CreateAPIKeyDialog = ({ open, onOpenChange, onSubmit, loading = false }: CreateAPIKeyDialogProps) => {
   const [name, setName] = useState("");
   const form = useForm();
 
   const handleSubmit = () => {
-    if (name.trim()) {
+    if (name.trim() && !loading) {
       onSubmit(name);
       setName("");
     }
@@ -45,6 +47,7 @@ const CreateAPIKeyDialog = ({ open, onOpenChange, onSubmit }: CreateAPIKeyDialog
                       onChange={(e) => setName(e.target.value)}
                       className="w-full"
                       autoFocus
+                      disabled={loading}
                     />
                   </FormControl>
                 </FormItem>
@@ -53,9 +56,16 @@ const CreateAPIKeyDialog = ({ open, onOpenChange, onSubmit }: CreateAPIKeyDialog
             <Button 
               type="submit" 
               className="w-full"
-              disabled={!name.trim()}
+              disabled={!name.trim() || loading}
             >
-              Create Key
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Creating...
+                </>
+              ) : (
+                "Create Key"
+              )}
             </Button>
           </form>
         </Form>
