@@ -48,6 +48,8 @@ jobs:
       - name: Build project
         run: npm run build # Executes the build script defined in your frontend/package.json
         working-directory: ./frontend # Run this command inside the 'frontend' directory
+        env:
+          VITE_CLERK_PUBLISHABLE_KEY: ${{ secrets.VITE_CLERK_PUBLISHABLE_KEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4 # Configures GitHub Pages settings
@@ -61,4 +63,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # Deploys the uploaded artifact to GitHub Pages
+        uses: actions/deploy-pages@v4 # Deploys the uploaded artifact to GitHub Pages 
