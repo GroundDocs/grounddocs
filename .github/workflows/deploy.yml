@@ -50,7 +50,9 @@ jobs:
         working-directory: ./frontend # Run this command inside the 'frontend' directory
         env:
           VITE_CLERK_PUBLISHABLE_KEY: ${{ secrets.VITE_CLERK_PUBLISHABLE_KEY }}
-
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          
       - name: Setup Pages
         uses: actions/configure-pages@v4 # Configures GitHub Pages settings
 
