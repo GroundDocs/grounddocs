@@ -2,8 +2,6 @@
 
 GroundDocs is a version-aware documentation assistant. It connects LLMs to trusted, real-time docs—reducing hallucinations and ensuring accurate, version-specific responses.
 
-<!-- Test change to trigger workflow - 2025-01-26 (fixed) -->
-
 ## 🚀 Installation
 
 ```bash
@@ -11,7 +9,6 @@ npx @grounddocs/cli@latest install <client>
 ```
 
 **Supported clients:** cursor, windsurf, cline, claude, witsy, enconvo, vscode
-
 
 ## 🔧 Manual Setup
 
