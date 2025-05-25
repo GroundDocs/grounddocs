@@ -1,4 +1,5 @@
 import { config } from "./config.js";
+import chalk from "chalk";
 
 // Polyfill fetch for Node.js environments
 // @ts-ignore
@@ -17,6 +18,53 @@ const GROUND_DOCS_API_KEY =
 
 export const BASE_URL = "https://grounddocs.onrender.com";
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+
+interface ErrorDetail {
+  error: string;
+  message?: string;
+  free_quota_used?: boolean;
+  monthly_quota_used?: boolean;
+  upgrade_url?: string;
+}
+
+export class GroundDocsError extends Error {
+  public status: number;
+  public detail: ErrorDetail | string;
+  
+  constructor(status: number, detail: ErrorDetail | string) {
+    const message = typeof detail === 'string' ? detail : detail.message || detail.error;
+    super(message);
+    this.name = 'GroundDocsError';
+    this.status = status;
+    this.detail = detail;
+  }
+  
+  isFreeQuotaExceeded(): boolean {
+    return this.status === 429 && 
+           typeof this.detail === 'object' && 
+           this.detail.free_quota_used === true;
+  }
+  
+  isMonthlyQuotaExceeded(): boolean {
+    return this.status === 429 && 
+           typeof this.detail === 'object' && 
+           this.detail.monthly_quota_used === true;
+  }
+  
+  getUpgradeUrl(): string | null {
+    if (typeof this.detail === 'object' && this.detail.upgrade_url) {
+      return this.detail.upgrade_url;
+    }
+    return null;
+  }
+  
+  getUserFriendlyMessage(): string {
+    if (typeof this.detail === 'object') {
+      return this.detail.message || this.detail.error || this.message;
+    }
+    return this.message;
+  }
+}
 
 interface HttpClient {
   get<T>(
@@ -57,7 +105,7 @@ const createMethod = (method: HttpMethod) => {
       ...options.headers,
     };
 
-    console.log("BASE_URL", BASE_URL);
+    console.log(chalk.dim(`Making ${method} request to ${endpoint}${GROUND_DOCS_API_KEY ? ' (with API key)' : ' (free tier)'}`));
 
     try {
       const response = await fetch(`${BASE_URL}${endpoint}`, {
@@ -67,18 +115,53 @@ const createMethod = (method: HttpMethod) => {
         ...(data ? { body: JSON.stringify(data) } : {}),
       });
 
-      console.log("response", response);
+      console.log(chalk.dim(`Response status: ${response.status}`));
       
       // Check if response is ok (status 200-299)
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error(`HTTP Error ${response.status}: ${errorText}`);
-        throw new Error(`HTTP Error ${response.status}: ${errorText}`);
+        let errorDetail: ErrorDetail | string;
+        
+        try {
+          // Try to parse JSON error response
+          const errorJson = await response.json();
+          errorDetail = errorJson.detail || errorJson;
+        } catch (parseError) {
+          // If JSON parsing fails, use response text
+          errorDetail = await response.text() || `HTTP ${response.status} Error`;
+        }
+        
+        const error = new GroundDocsError(response.status, errorDetail);
+        
+        // Log clean, user-friendly messages with colors
+        if (error.isFreeQuotaExceeded()) {
+          console.log(chalk.yellow("⚠️  Free tier limit reached"));
+          console.log(chalk.white(error.getUserFriendlyMessage()));
+          if (error.getUpgradeUrl()) {
+            console.log(chalk.blue(`🔗 Upgrade at: ${error.getUpgradeUrl()}`));
+          }
+        } else if (error.isMonthlyQuotaExceeded()) {
+          console.log(chalk.yellow("⚠️  Monthly quota exceeded"));
+          console.log(chalk.white(error.getUserFriendlyMessage()));
+          if (error.getUpgradeUrl()) {
+            console.log(chalk.blue(`🔗 Upgrade at: ${error.getUpgradeUrl()}`));
+          }
+        } else {
+          console.log(chalk.red(`❌ Request failed (${response.status}): ${error.getUserFriendlyMessage()}`));
+        }
+        
+        throw error;
       }
+      
       return { status: response.status, data: (await response.json()) as T };
     } catch (error) {
-      console.error("Fetch error:", error);
-      throw error;
+      // If it's already a GroundDocsError, re-throw it
+      if (error instanceof GroundDocsError) {
+        throw error;
+      }
+      
+      // For network or other errors, create a generic error
+      console.log(chalk.red("❌ Network error:"), error);
+      throw new GroundDocsError(500, "Network error: Unable to connect to GroundDocs API");
     }
   };
 };
